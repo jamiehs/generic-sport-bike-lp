@@ -1,0 +1,14 @@
+.model {
+	background: #eee;
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-top: 100%;
+	border: solid 4px orange;
+
+	canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
