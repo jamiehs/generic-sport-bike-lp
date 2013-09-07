@@ -185,6 +185,10 @@ var ChainAndSprocket = {
 };
 
 $(document).ready(function(){
-    HandlebarModel.init();
-    ChainAndSprocket.init();
+    if( document.getElementById('handlebar') ) {
+        HandlebarModel.init();
+    }
+    if( document.getElementById('chain_sprocket') ) {
+        ChainAndSprocket.init();
+    }
 });
