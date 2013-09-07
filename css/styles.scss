@@ -1,11 +1,10 @@
-@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
-  -webkit-box-shadow:$top $left $blur $color #{$inset};
-  -moz-box-shadow:$top $left $blur $color #{$inset};
-  box-shadow:$top $left $blur $color #{$inset};
-}
+@import 'mixins.scss';
 
 // Predefined colors
 $primary_orange: #fe7a2b;
+$big_gradient_start: rgba(135, 144, 202, 0.5);
+$big_gradient_end: rgba(0, 0, 0, 0);
+$medium_white_text: #bfbfbf;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -15,8 +14,6 @@ body {
 h1, h2, h3, h4, h5, h6, p, span, div, em, strong, b, i {
   font-family: 'Roboto', sans-serif;
 }
-
-// Header
 h1 {
   color: $primary_orange;
   line-height: 1.080em;
@@ -31,13 +28,18 @@ h2 {
   size: 1.486875em;
   }
 }
+a {
+  color: $primary_orange;
+}
+img {
+  max-width: 100%;
+}
+
+// Header
 #header-intro-wrapper {
   background: #3d3d3d;
   #star-image {
     text-align: center;
-    img {
-      max-width: 100%;
-    }
   }
   #intro-copy {
     padding: {
@@ -98,15 +100,88 @@ h2 {
   }
 }
 
+#sample-section {
+  h2 {
+    padding-left: 0.5em;
+    font-size: 2.5em;
+    line-height: 1.7em;
+    em {
+      font-style: italic;
+      font-size: 0.65em;
+    }
+  }
+  .model-sample-wrapper {
+    padding: 20px;
+    img {
+      max-width: 100%;
+    }
+  }
+  #inset-copy {
+    background: #000;
+    padding: 2em;
+    font-size: 1.3em;
+    line-height: 1.6em;
+    width: 80%;
+    margin: 60px auto 45px;
+  }
+  #detail-images {
+    text-align: center;
+    margin-bottom: 3em;
+    .row div {
+      margin-bottom: 30px;
+    }
+  }
+
+  #bike-front-background {
+    background: {
+      image: url('../img/bike-front-background.jpg');
+      position: top center;
+      repeat: no-repeat;
+    }
+    position: relative;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      @include gradient-vertical($big_gradient_start, $big_gradient_end);
+    }
+    div.inner {
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+  }
+}
+
 // TurboSquid CTA (global)
 .ts-cta {
-  display: inline-block;
-  padding-top: 1em;
-  p {
+  &.center {
+    text-align: center;
+    a {
+      text-align: left;
+    }
+  }
+  a {
     display: inline-block;
+    padding-top: 1em;
+    clear: both;
+    &:hover {
+      color: $medium_white_text;
+      text-decoration: none;
+    }
+  }
+  span {
+    display: inline;
     width: auto;
     margin: 0;
-    color: #bfbfbf;
+    color: $medium_white_text;
     font: {
       size: 1.13375em;
       weight: 700;
@@ -116,7 +191,16 @@ h2 {
   img {
     display: inline-block;
   }
+  .pricing-prompt {
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
+.non-commercial-use-info {
+  text-align: center;
+  padding: 2em 0 5em;
+} 
 
 .model {
   background: #eee;
