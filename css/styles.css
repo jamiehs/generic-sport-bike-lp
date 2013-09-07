@@ -18,6 +18,8 @@ h2 {
 
 a {
   color: #fe7a2b; }
+  a:hover {
+    color: #feaa77; }
 
 img {
   max-width: 100%; }
