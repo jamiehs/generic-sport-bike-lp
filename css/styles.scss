@@ -70,7 +70,7 @@ h2 {
       position: absolute;
       top: 0;
       right: $right_offset;
-      @include box-shadow(0px, 0px, $right_offset, rgba(0, 0, 0, 0.25));
+      @include box-shadow(0px, 0px, $right_offset, rgba(0, 0, 0, 0.5));
     }
   }
   ul {
