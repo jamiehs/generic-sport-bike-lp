@@ -48,7 +48,10 @@ img {
 .ts-cta .pricing-prompt {
   display: block;
   text-align: center;
-  white-space: nowrap; }
+  white-space: nowrap;
+  padding-top: 0.44em;
+  font-size: 1.02em;
+  font-weight: 300; }
 
 #header-intro-wrapper {
   background: #3d3d3d; }
@@ -82,7 +85,7 @@ img {
     margin: 0;
     padding-top: 45px;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 2em;
     padding-bottom: 45px;
     line-height: 1.25em;
     font-weight: 300;
@@ -114,11 +117,17 @@ img {
 @media (max-width: 768px) {
   #header-details {
     overflow: visible; }
+    #header-details ul {
+      padding-left: 2em; }
     #header-details #cropped-hierarchy-wrapper {
       position: relative;
       padding-bottom: 2em;
       margin-bottom: 0;
       text-align: center; }
+      #header-details #cropped-hierarchy-wrapper h3 {
+        color: #bfbfbf;
+        font-size: 1.25em;
+        text-transform: capitalize; }
       #header-details #cropped-hierarchy-wrapper img {
         position: relative;
         top: auto;
