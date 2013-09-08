@@ -1,3 +1,22 @@
+var GenericSportBike = {
+    selectors: {
+        bikeBg: '#bike-front-background'
+    },
+
+    loadBikeBg: function(){
+        var bikeElement = $(this.selectors.bikeBg);
+        bikeElement.css({
+            'background-image': "url('" + bikeElement.data('bg-image') + "')"
+        });
+    },
+
+    init: function(){
+        // Initial setup of stuffs...
+        HandlebarModel.init();
+        ChainAndSprocket.init();
+    }
+};
+
 var HandlebarModel = {
     camera: {},
     scene: {},
@@ -72,22 +91,24 @@ var HandlebarModel = {
     },
 
     init: function(){
-        var self = this;
-        var loader = new THREE.ColladaLoader();
-        loader.options.convertUpAxis = true;
-        loader.options.subdivideFaces = false;
-        loader.load( './models/handlebar_section.dae', function colladaReady( collada ) {
+        if( document.getElementById('handlebar') ) {
+            var self = this;
+            var loader = new THREE.ColladaLoader();
+            loader.options.convertUpAxis = true;
+            loader.options.subdivideFaces = false;
+            loader.load( './models/handlebar_section.dae', function colladaReady( collada ) {
 
-            self.dae = collada.scene;
+                self.dae = collada.scene;
 
-            self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
-            self.dae.updateMatrix();
-            
-            self.setup();
-            self.animate();
-        });
+                self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
+                self.dae.updateMatrix();
+                
+                self.setup();
+                self.animate();
+            });
 
-        self.startTime = Date.now();
+            self.startTime = Date.now();
+        }
     }
 };
 
@@ -166,29 +187,30 @@ var ChainAndSprocket = {
     },
 
     init: function(){
-        var self = this;
-        var loader = new THREE.ColladaLoader();
-        loader.options.convertUpAxis = true;
-        loader.load( './models/chain_sprocket_section.dae', function colladaReady( collada ) {
+        if( document.getElementById('chain_sprocket') ) {
+            var self = this;
+            var loader = new THREE.ColladaLoader();
+            loader.options.convertUpAxis = true;
+            loader.load( './models/chain_sprocket_section.dae', function colladaReady( collada ) {
 
-            self.dae = collada.scene;
+                self.dae = collada.scene;
 
-            self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
-            self.dae.updateMatrix();
-            
-            self.setup();
-            self.animate();
-        });
+                self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
+                self.dae.updateMatrix();
+                
+                self.setup();
+                self.animate();
+            });
 
-        self.startTime = Date.now();
+            self.startTime = Date.now();
+        }
     }
 };
 
 $(document).ready(function(){
-    if( document.getElementById('handlebar') ) {
-        HandlebarModel.init();
-    }
-    if( document.getElementById('chain_sprocket') ) {
-        ChainAndSprocket.init();
-    }
+    GenericSportBike.init();
+});
+
+$(window).load(function(){
+    GenericSportBike.loadBikeBg();
 });
