@@ -190,6 +190,11 @@ img {
     overflow: hidden;
     z-index: 2; }
 
+#detail-images-modal .modal-dialog {
+  width: auto;
+  max-width: 900px;
+  padding: 10px !important; }
+
 @media (max-width: 768px) {
   #sample-section #inset-copy {
     background: #000;

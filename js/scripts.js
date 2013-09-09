@@ -1,6 +1,9 @@
 var GenericSportBike = {
     selectors: {
-        bikeBg: '#bike-front-background'
+        bikeBg: '#bike-front-background',
+        detailGalleryItems: '#detail-images a',
+        detailGalleryModal: '#detail-images-modal',
+        detailGalleryModalImage: '#detail-images-modal img'
     },
 
     loadBikeBg: function(){
@@ -10,8 +13,23 @@ var GenericSportBike = {
         });
     },
 
+    detailImagesGallery: function(){
+        var self = this;
+        $(this.selectors.detailGalleryItems).on('click', function(event) {
+            event.preventDefault();
+            $(self.selectors.detailGalleryModalImage).attr("src", this.href);
+            $(self.selectors.detailGalleryModal).modal('show');
+        });
+        $(self.selectors.detailGalleryModalImage).click(function(){
+            $(self.selectors.detailGalleryModal).modal('hide');
+        });
+    },
+
     init: function(){
         // Initial setup of stuffs...
+
+        this.detailImagesGallery();
+
         HandlebarModel.init();
         ChainAndSprocket.init();
     }

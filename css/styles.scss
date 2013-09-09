@@ -284,6 +284,12 @@ img {
     }
   }
 }
+#detail-images-modal .modal-dialog {
+  width: auto;
+  max-width: 900px;
+  padding: 10px !important;
+}
+
 // Extra Small (phones)
 @media (max-width: 768px) {
   #sample-section {
