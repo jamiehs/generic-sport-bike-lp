@@ -11,23 +11,9 @@
     <title>Generic Sport Bike by Jamie Hamel-Smith (jamie3d)</title>
 
     <!-- Bootstrap core CSS -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300italic,300,700,700italic" rel="stylesheet" type="text/css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
-
-    <script type="text/javascript">
-      WebFontConfig = {
-        google: { families: [ 'Roboto:300,700,700italic,300italic:latin' ] }
-      };
-      (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-      })();
-    </script>
 
   </head>
 
@@ -81,23 +67,31 @@
     </div>
 
     <div id="sample-section" class="container">
-        <h2 class="hidden-xs hidden-sm">Sample Sections of the Model <em>(touch or drag to rotate)</em></h2>
+        <div class="starts-hidden">
+            <h2 class="hidden-xs hidden-sm">Sample Sections of the Model <em>(touch or drag to rotate)</em></h2>
+        </div>
         <div id="bike-front-background" data-bg-image="./img/bike-front-background.jpg">
             <div class="inner">
-                <div class="row hidden-xs hidden-sm">
-                    <div class="col-md-4">
-                        <div class="model-sample-wrapper">
-                            <img src="http://placehold.it/350x350">
+                <div class="starts-hidden">
+                    <div class="row hidden-xs hidden-sm">
+                        <div class="col-md-4">
+                            <div class="model-sample-wrapper">
+                                <div id="handlebar" class="model">
+                                    <img src="http://placehold.it/350x350">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="model-sample-wrapper">
-                            <img src="http://placehold.it/350x350">
+                        <div class="col-md-4">
+                            <div class="model-sample-wrapper">
+                                <div id="chain_sprocket" class="model">
+                                    <img src="http://placehold.it/350x350">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="model-sample-wrapper">
-                            <img src="http://placehold.it/350x350">
+                        <div class="col-md-4">
+                            <div class="model-sample-wrapper">
+                                <img src="http://placehold.it/350x350">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,6 +139,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./js/jquery-1.10.2.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
     <!-- <script src="./js/threejs/three.min.js"></script> -->
     <!-- <script src="./js/threejs/ColladaLoader.js"></script> -->
     <script src="./js/scripts.js"></script>

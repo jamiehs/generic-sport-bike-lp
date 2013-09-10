@@ -6,6 +6,14 @@ var GenericSportBike = {
         detailGalleryModalImage: '#detail-images-modal img'
     },
 
+    supportsWebGL: function (){
+        try {
+            return !! window.WebGLRenderingContext && !! document.createElement( 'canvas' ).getContext( 'experimental-webgl' );
+        } catch(e) {
+            return false;
+        }
+    },
+
     loadBikeBg: function(){
         var bikeElement = $(this.selectors.bikeBg);
         bikeElement.css({
@@ -13,25 +21,28 @@ var GenericSportBike = {
         });
     },
 
-    detailImagesGallery: function(){
-        var self = this;
-        $(this.selectors.detailGalleryItems).on('click', function(event) {
-            event.preventDefault();
-            $(self.selectors.detailGalleryModalImage).attr("src", this.href);
-            $(self.selectors.detailGalleryModal).modal('show');
-        });
-        $(self.selectors.detailGalleryModalImage).click(function(){
-            $(self.selectors.detailGalleryModal).modal('hide');
-        });
+    // This is fired on the window.onload event via jQuery, and
+    // is used to load the massive ThreeJS library after the fact.
+    deferredLoading: function(){
+        this.loadBikeBg();
+
+        // If it doesn't support WebGL, then don;t even load Three.js
+        if( this.supportsWebGL() ){
+            // Load ThreeJS and the Collada Loader
+            $LAB.script('./js/threejs/three.min.js').wait()
+            .script('./js/threejs/ColladaLoader.js').wait(function(){
+                console.log("ThreeJS Fully Loaded");
+                HandlebarModel.init();
+                ChainAndSprocket.init();
+            });
+            $('body').addClass('webgl');
+        } else {
+            $('body').addClass('no-webgl');
+        }
     },
 
     init: function(){
         // Initial setup of stuffs...
-
-        this.detailImagesGallery();
-
-        HandlebarModel.init();
-        ChainAndSprocket.init();
     }
 };
 
@@ -97,6 +108,7 @@ var HandlebarModel = {
         self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
 
         self.canvas[0].appendChild( self.renderer.domElement );
+        self.canvas.find('img').remove();
     },
 
     animate: function() {
@@ -109,7 +121,7 @@ var HandlebarModel = {
     },
 
     init: function(){
-        if( document.getElementById('handlebar') ) {
+        if( $('#handlebar').length && $('#handlebar').is(':visible') ) {
             var self = this;
             var loader = new THREE.ColladaLoader();
             loader.options.convertUpAxis = true;
@@ -186,6 +198,7 @@ var ChainAndSprocket = {
         self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
 
         self.canvas[0].appendChild( self.renderer.domElement );
+        self.canvas.find('img').remove();
     },
 
     animate: function() {
@@ -205,7 +218,7 @@ var ChainAndSprocket = {
     },
 
     init: function(){
-        if( document.getElementById('chain_sprocket') ) {
+        if( $('#chain_sprocket').length && $('#chain_sprocket').is(':visible') ) {
             var self = this;
             var loader = new THREE.ColladaLoader();
             loader.options.convertUpAxis = true;
@@ -230,5 +243,5 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
-    GenericSportBike.loadBikeBg();
+    GenericSportBike.deferredLoading();
 });

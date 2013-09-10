@@ -54,6 +54,13 @@ a {
 img {
   max-width: 100%;
 }
+// Warning, conflicts with Bootstraps' hidden/visible classes.
+.starts-hidden {
+  display: none !important;
+}
+body.webgl .starts-hidden {
+  display: block !important;
+}
 
 // TurboSquid CTA (global element)
 .ts-cta {
@@ -284,11 +291,6 @@ img {
     }
   }
 }
-#detail-images-modal .modal-dialog {
-  width: auto;
-  max-width: 900px;
-  padding: 10px !important;
-}
 
 // Extra Small (phones)
 @media (max-width: 768px) {
@@ -326,7 +328,13 @@ img {
   width: 100%;
   height: 0;
   padding-top: 100%;
-  border: solid 4px orange;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 
   canvas {
     position: absolute;
