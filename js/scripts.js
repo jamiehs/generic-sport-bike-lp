@@ -30,7 +30,8 @@ var GenericSportBike = {
         if( this.supportsWebGL() ){
             // Load ThreeJS and the Collada Loader
             $LAB.script('./js/threejs/three.min.js').wait()
-            .script('./js/threejs/ColladaLoader.js').wait(function(){
+            .script('./js/threejs/ColladaLoader.js').wait()
+            .script('./js/orbit_controls.js').wait(function(){
                 console.log("ThreeJS Fully Loaded");
                 HandlebarModel.init();
                 ChainAndSprocket.init();
@@ -73,10 +74,14 @@ var HandlebarModel = {
 
         self.canvas = $('#handlebar');
 
-        self.camera = new THREE.PerspectiveCamera( 50, 1, 1, 1000 );
-        self.camera.position.z = 20;
-        self.camera.position.y = 15;
-        self.camera.rotation.x = -0.7;
+        self.camera = new THREE.PerspectiveCamera( 25, 1, 1, 1000 );
+
+        self.controls = new THREE.OrbitControls( self.camera, self.canvas[0] );
+        self.controls.target.z = 0;
+        self.controls.noZoom = true;
+        self.controls.rotateSpeed = 1.75;
+
+        self.camera.position.z = 75;
 
         self.scene = new THREE.Scene();
 
@@ -103,7 +108,7 @@ var HandlebarModel = {
             z: 100
         }
         self.scene.add( pointLight2 );
-
+        
         self.renderer = new THREE.WebGLRenderer();
         self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
 
@@ -114,9 +119,6 @@ var HandlebarModel = {
     animate: function() {
         var self = this;
         requestAnimationFrame( this.animate.bind(this) );
-        var dtime = Date.now() - self.startTime;
-        self.dae.rotation.y += 0.006*Math.sin(dtime/3600);
-        self.dae.rotation.z += 0.001;
         self.renderer.render( self.scene, self.camera );
     },
 
@@ -135,6 +137,7 @@ var HandlebarModel = {
                 
                 self.setup();
                 self.animate();
+
             });
 
             self.startTime = Date.now();
@@ -150,17 +153,23 @@ var ChainAndSprocket = {
     geometry: {},
     material: {},
     mesh: {},
-    initialRotation: 20,
+    initialRotation: 5.4,
 
     setup: function(){
         var self = this;
 
         self.canvas = $('#chain_sprocket');
 
-        self.camera = new THREE.PerspectiveCamera( 50, 1, 1, 1000 );
-        self.camera.position.z = 7;
-        self.camera.position.y = 10;
-        self.camera.rotation.x = -0.7;
+        self.camera = new THREE.PerspectiveCamera( 25, 1, 1, 1000 );
+
+        self.controls = new THREE.OrbitControls( self.camera, self.canvas[0] );
+        self.controls.target.z = 0;
+        self.controls.noZoom = true;
+        self.controls.rotateSpeed = 1.75;
+        self.controls.target.y = 4;
+        self.camera.position.y = 4;
+
+        self.camera.position.z = 25;
 
         self.scene = new THREE.Scene();
 
@@ -176,21 +185,21 @@ var ChainAndSprocket = {
 
         //self.scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-        pointLight = new THREE.PointLight( 0x666666, 2 );
-        pointLight.position = {
-            x: -500,
-            y: 200,
-            z: 0
-        }
-        self.scene.add( pointLight );
+        // self.pointLight = new THREE.PointLight( 0x666666, 2 );
+        // self.pointLight.position = {
+        //     x: -500,
+        //     y: 200,
+        //     z: 0
+        // }
+        // self.scene.add( self.pointLight );
         
-        pointLight2 = new THREE.PointLight( 0x666666, 2 );
-        pointLight2.position = {
-            x: 500,
-            y: 200,
-            z: 400
-        }
-        self.scene.add( pointLight2 );
+        // self.pointLight2 = new THREE.PointLight( 0x666666, 2 );
+        // self.pointLight2.position = {
+        //     x: 500,
+        //     y: 200,
+        //     z: 400
+        // }
+        self.scene.add( self.pointLight2 );
 
 
         //self.renderer = new THREE.CanvasRenderer();
@@ -206,14 +215,7 @@ var ChainAndSprocket = {
 
         // note: three.js includes requestAnimationFrame shim
         requestAnimationFrame( this.animate.bind(this) );
-        //self.mesh.rotation.y += 0.01;
-        //self.mesh.rotation.y += 0.02;
-
         var dtime = Date.now() - self.startTime;
-
-        self.dae.rotation.y += 0.003*Math.sin(dtime/6400);
-        //self.dae.rotation.x += 0.0005;
-
         self.renderer.render( self.scene, self.camera );
     },
 
