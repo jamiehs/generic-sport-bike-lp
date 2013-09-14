@@ -212,11 +212,25 @@ body.webgl .starts-hidden {
   text-align: center;
   padding: 2em 0 5em; }
 
+.footnote {
+  font-size: 0.95em;
+  text-align: center;
+  color: #bfbfbf; }
+
 .model {
   position: relative;
   width: 100%;
   height: 0;
-  padding-top: 100%; }
+  padding-top: 100%;
+  -webkit-transition: all 310ms linear;
+  -moz-transition: all 310ms linear;
+  -ms-transition: all 310ms linear;
+  -o-transition: all 310ms linear;
+  transition: all 310ms linear; }
+  .model:hover {
+    -webkit-box-shadow: 0 0 8px 3px rgba(134, 160, 255, 0.3);
+    -moz-box-shadow: 0 0 8px 3px rgba(134, 160, 255, 0.3);
+    box-shadow: 0 0 8px 3px rgba(134, 160, 255, 0.3); }
   .model img {
     position: absolute;
     top: 0;

@@ -4,8 +4,8 @@
         <contributor>
             <authoring_tool>CINEMA4D 14.042 COLLADA Exporter</authoring_tool>
         </contributor>
-        <created>2013-09-14T04:32:33Z</created>
-        <modified>2013-09-14T04:32:33Z</modified>
+        <created>2013-09-14T06:42:14Z</created>
+        <modified>2013-09-14T06:42:14Z</modified>
         <unit meter="0.01" name="centimeter"/>
         <up_axis>Y_UP</up_axis>
     </asset>
@@ -48,9 +48,9 @@
             <profile_COMMON>
                 <technique sid="COMMON">
                     <blinn>
-                        <diffuse>
+                        <emission>
                             <color>0.54 0.0378 0.0378 1</color>
-                        </diffuse>
+                        </emission>
                         <specular>
                             <color>0.086 0.00774 0.00774 1</color>
                         </specular>
@@ -1319,19 +1319,42 @@
             </mesh>
         </geometry>
     </library_geometries>
+    <library_lights>
+        <light id="ID266" name="Light.2">
+            <technique_common>
+                <point>
+                    <color>0.6552 0.812327 0.91</color>
+                </point>
+            </technique_common>
+        </light>
+        <light id="ID268" name="Light.1">
+            <technique_common>
+                <point>
+                    <color>0.7 0.69265 0.553</color>
+                </point>
+            </technique_common>
+        </light>
+        <light id="ID270" name="Light">
+            <technique_common>
+                <point>
+                    <color>1.49 1.49 1.49</color>
+                </point>
+            </technique_common>
+        </light>
+    </library_lights>
     <library_visual_scenes>
         <visual_scene id="ID11">
             <node id="ID12" name="Null">
-                <translate sid="translate">1.25836 0.84126 -0.923913</translate>
-                <rotate sid="rotateY">0 1 0 150.327</rotate>
-                <rotate sid="rotateX">1 0 0 -5.38749</rotate>
-                <rotate sid="rotateZ">0 0 1 -36.8833</rotate>
+                <translate sid="translate">0 0 -0</translate>
+                <rotate sid="rotateY">0 1 0 59.6155</rotate>
+                <rotate sid="rotateX">1 0 0 0</rotate>
+                <rotate sid="rotateZ">0 0 1 -1.20742e-006</rotate>
                 <scale sid="scale">1 1 1</scale>
                 <node id="ID13" name="bar.1">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID14">
                         <bind_material>
@@ -1344,10 +1367,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID22" name="bar.2">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID23">
                         <bind_material>
@@ -1360,10 +1383,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID31" name="bar.3">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID32">
                         <bind_material>
@@ -1376,10 +1399,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID40" name="bar.4">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID41">
                         <bind_material>
@@ -1392,10 +1415,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID49" name="bar.5">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID50">
                         <bind_material>
@@ -1408,10 +1431,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID58" name="bar.6">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID59">
                         <bind_material>
@@ -1424,10 +1447,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID67" name="bar.7">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID68">
                         <bind_material>
@@ -1440,10 +1463,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID76" name="bar.8">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID77">
                         <bind_material>
@@ -1456,10 +1479,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID85" name="bar">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID86">
                         <bind_material>
@@ -1472,10 +1495,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID94" name="bar">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID95">
                         <bind_material>
@@ -1488,10 +1511,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID103" name="bar.1">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID104">
                         <bind_material>
@@ -1504,10 +1527,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID112" name="bar.2">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID113">
                         <bind_material>
@@ -1520,10 +1543,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID121" name="bar.3">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID122">
                         <bind_material>
@@ -1536,10 +1559,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID130" name="bar">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID131">
                         <bind_material>
@@ -1552,10 +1575,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID139" name="bar">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID140">
                         <bind_material>
@@ -1568,10 +1591,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID148" name="bar">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID149">
                         <bind_material>
@@ -1584,10 +1607,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID157" name="switches.1">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID158">
                         <bind_material>
@@ -1600,10 +1623,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID166" name="switches.2">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID167">
                         <bind_material>
@@ -1616,10 +1639,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID175" name="chrome.1">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID176">
                         <bind_material>
@@ -1632,10 +1655,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID184" name="chrome.2">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID185">
                         <bind_material>
@@ -1648,10 +1671,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID193" name="chrome.3">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID194">
                         <bind_material>
@@ -1664,10 +1687,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID202" name="chrome.4">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID203">
                         <bind_material>
@@ -1680,10 +1703,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID211" name="chrome.5">
-                    <translate sid="translate">1.95195 1.76036 0.408186</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">-0.839429 0.978081 -2.55368</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID212">
                         <bind_material>
@@ -1696,10 +1719,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID220" name="cut.1">
-                    <translate sid="translate">-6.1399 -1.32134 -2.20507</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">4.83979 3.49083 4.02177</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID221">
                         <bind_material>
@@ -1712,10 +1735,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID229" name="cut.2">
-                    <translate sid="translate">-6.1399 -1.32134 -2.20507</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">4.83979 3.49083 4.02177</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID230">
                         <bind_material>
@@ -1728,10 +1751,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID238" name="cut.3">
-                    <translate sid="translate">-6.1399 -1.32134 -2.20507</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">4.83979 3.49083 4.02177</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID239">
                         <bind_material>
@@ -1744,10 +1767,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID247" name="cut.4">
-                    <translate sid="translate">-6.1399 -1.32134 -2.20507</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">4.83979 3.49083 4.02177</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID248">
                         <bind_material>
@@ -1760,10 +1783,10 @@
                     </instance_geometry>
                 </node>
                 <node id="ID256" name="cut.5">
-                    <translate sid="translate">-6.1399 -1.32134 -2.20507</translate>
-                    <rotate sid="rotateY">0 1 0 33.9629</rotate>
-                    <rotate sid="rotateX">1 0 0 -4.21834</rotate>
-                    <rotate sid="rotateZ">0 0 1 -333.823</rotate>
+                    <translate sid="translate">4.83979 3.49083 4.02177</translate>
+                    <rotate sid="rotateY">0 1 0 179.544</rotate>
+                    <rotate sid="rotateX">1 0 0 11.3373</rotate>
+                    <rotate sid="rotateZ">0 0 1 -11.6338</rotate>
                     <scale sid="scale">1 1 1</scale>
                     <instance_geometry url="#ID257">
                         <bind_material>
@@ -1775,6 +1798,30 @@
                         </bind_material>
                     </instance_geometry>
                 </node>
+            </node>
+            <node id="ID265" name="Light.2">
+                <translate sid="translate">-5.28254 29.5866 -15.678</translate>
+                <rotate sid="rotateY">0 1 0 -0</rotate>
+                <rotate sid="rotateX">1 0 0 0</rotate>
+                <rotate sid="rotateZ">0 0 1 -0</rotate>
+                <scale sid="scale">1 1 1</scale>
+                <instance_light url="#ID266"/>
+            </node>
+            <node id="ID267" name="Light.1">
+                <translate sid="translate">16.9501 -23.1888 -7.90324</translate>
+                <rotate sid="rotateY">0 1 0 -0</rotate>
+                <rotate sid="rotateX">1 0 0 0</rotate>
+                <rotate sid="rotateZ">0 0 1 -0</rotate>
+                <scale sid="scale">1 1 1</scale>
+                <instance_light url="#ID268"/>
+            </node>
+            <node id="ID269" name="Light">
+                <translate sid="translate">-8.28228 12.0016 20.5473</translate>
+                <rotate sid="rotateY">0 1 0 -0</rotate>
+                <rotate sid="rotateX">1 0 0 0</rotate>
+                <rotate sid="rotateZ">0 0 1 -0</rotate>
+                <scale sid="scale">1 1 1</scale>
+                <instance_light url="#ID270"/>
             </node>
         </visual_scene>
     </library_visual_scenes>

@@ -322,12 +322,21 @@ body.webgl .starts-hidden {
 } 
 
 
+.footnote {
+  font-size: 0.95em;
+  text-align: center;
+  color: $medium_white_text;
+}
 .model {
   position: relative;
   width: 100%;
   height: 0;
   padding-top: 100%;
+  @include transition( all, 310ms, linear );
 
+  &:hover {
+    @include box-shadow( 0, 0, 8px, 3px, rgba(134, 160, 255, 0.30) );
+  }
   img {
     position: absolute;
     top: 0;
