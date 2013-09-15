@@ -35,7 +35,7 @@ var GenericSportBike = {
             // Load ThreeJS and the Collada Loader
             $LAB.script('./js/threejs/three.min.js').wait()
             .script('./js/threejs/ColladaLoader.js').wait()
-            .script('./js/orbit_controls.js').wait(function(){
+            .script('./js/threejs/orbit_controls.min.js').wait(function(){
                 console.log("ThreeJS Fully Loaded");
 
                 NoseModel.init();
