@@ -19,6 +19,8 @@ $heaviest_weight: 700;
 // the hierarchy image.
 $shadow_offset: 10px;
 
+$model-section-transition-speed: 310ms;
+
 
 ////////////////////////////////////////////////
 // Global Styles
@@ -237,7 +239,7 @@ body.webgl .starts-hidden {
   h2 {
     padding-left: 0.5em;
     font-size: 2.5em;
-    line-height: 1.7em;
+    line-height: 1.1em;
     em {
       font-style: italic;
       font-size: 0.65em;
@@ -332,7 +334,7 @@ body.webgl .starts-hidden {
   width: 100%;
   height: 0;
   padding-top: 100%;
-  @include transition( all, 310ms, linear );
+  @include transition( all, $model-section-transition-speed, linear );
 
   &:hover {
     @include box-shadow( 0, 0, 8px, 3px, rgba(134, 160, 255, 0.30) );
@@ -343,10 +345,41 @@ body.webgl .starts-hidden {
     left: 0;
     width: 100%;
   }
-
   canvas {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 5;
+  }
+}
+.model-sample-wrapper {
+  .toggle-wireframe {
+    display: block;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    text-indent: -200%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    top: 4px;
+    left: 4px;
+    width: 35px;
+    height: 35px;
+    background: {
+      image: url('../img/wireframe-globe.8bit.png');
+      repeat: no-repeat;
+      position: 0 0;
+    }
+    @include transition( all, $model-section-transition-speed, linear );
+  }
+  &.model-loaded {
+    .toggle-wireframe {
+      opacity: 0.25;
+      visibility: visible;
+    }
+    &:hover .toggle-wireframe {
+      opacity: 1.0;
+    }  
   }
 }

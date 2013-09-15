@@ -25,9 +25,17 @@ var GenericSportBike = {
         $('#sample-section').find('h2:first em').show();
     },
 
+    bindSampleSectionToggleWireframe: function(){
+        $('#sample-section').find('.toggle-wireframe').click(function(event){
+            event.preventDefault();
+            $(this).parents('.model').data('model').toggleWireframe();
+        });
+    },
+
     // This is fired on the window.onload event via jQuery, and
     // is used to load the massive ThreeJS library after the fact.
     deferredLoading: function(){
+        var self = this;
         this.loadBikeBg();
 
         // If it doesn't support WebGL, then don;t even load Three.js
@@ -53,6 +61,8 @@ var GenericSportBike = {
                 window.ChainModel.cameraHeight = 4;
                 window.ChainModel.autoRotationSpeed =  0.00065;
                 window.ChainModel.init();
+
+                self.bindSampleSectionToggleWireframe();
 
             });
             $('body').addClass('webgl');
@@ -123,6 +133,7 @@ function LoadCollada( canvasId, filename ) {
 
         self.canvas[0].appendChild( self.renderer.domElement );
         self.canvas.find('img').remove();
+        self.canvas.parents('.model-sample-wrapper').addClass('model-loaded');
         GenericSportBike.showSampleSectionHeaderInstructions();
 
         $(window).resize(function(){
@@ -130,12 +141,15 @@ function LoadCollada( canvasId, filename ) {
             self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
         });
 
-        self.canvas.bind( 'mousedown', function(){
+        self.canvas.bind( 'mouseenter', function(){
             self.autoRotate = false;
         });
         self.canvas.bind( 'mouseleave', function(){
             self.autoRotate = true;
         });
+
+        // Attach a reference to this object to a data property.
+        $(self.canvasId).data('model', self);
     };
 
     this.animate = function() {
@@ -152,7 +166,6 @@ function LoadCollada( canvasId, filename ) {
 
     this.init = function(){
         var self = this;
-        console.log( self );
         if( $(self.canvasId).length && $(self.canvasId).is(':visible') ) {
             var loader = new THREE.ColladaLoader();
             loader.options.convertUpAxis = true;
