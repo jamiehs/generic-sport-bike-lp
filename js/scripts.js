@@ -38,9 +38,22 @@ var GenericSportBike = {
             .script('./js/threejs/orbit_controls.min.js').wait(function(){
                 console.log("ThreeJS Fully Loaded");
 
-                NoseModel.init();
-                HandlebarModel.init();
-                ChainAndSprocket.init();
+                window.HandlebarModel = new LoadCollada('#handlebar', './models/handlebar_section.dae');
+                window.HandlebarModel.init();
+
+                window.NoseModel = new LoadCollada('#nose', './models/nose_section.dae');
+                window.NoseModel.initialRotation = 3.5;
+                window.NoseModel.cameraDistance = 180;
+                window.NoseModel.autoRotationSpeed = 0.001;
+                window.NoseModel.init();
+
+                window.ChainModel = new LoadCollada('#chain_sprocket', './models/chain_sprocket_section.dae');
+                window.ChainModel.initialRotation = 5.4;
+                window.ChainModel.cameraDistance = 25;
+                window.ChainModel.cameraHeight = 4;
+                window.ChainModel.autoRotationSpeed =  0.00065;
+                window.ChainModel.init();
+
             });
             $('body').addClass('webgl');
         } else {
@@ -53,17 +66,25 @@ var GenericSportBike = {
     }
 };
 
-var HandlebarModel = {
-    camera: {},
-    scene: {},
-    renderer: {},
-    geometry: {},
-    mesh: {},
-    mouse: {},
-    initialRotation: 0,
-    autoRotate: true,
+function LoadCollada( canvasId, filename ) {
+    this.camera = {};
+    this.scene = {};
+    this.renderer = {};
+    this.geometry = {};
+    this.mesh = {};
+    this.mouse = {};
+    this.filename = filename;
+    this.canvasId = canvasId;
+    this.initialRotation = 0;
+    this.rotationSpeed = 1.2;
+    this.autoRotationSpeed = 0.00075;
+    this.startRotation = 1.75;
+    this.cameraDistance = 75;
+    this.cameraHeight = 0;
+    this.cameraFOV = 25;
+    this.autoRotate = true;
 
-    toggleWireframe: function(){
+    this.toggleWireframe = function(){
         var processed = Array();
         for (var k in this.dae.children[0].children ) {
             var object = this.dae.children[0].children[k];
@@ -72,22 +93,24 @@ var HandlebarModel = {
                 processed.push( object.material.id );
             }
         };
-    },
+    };
 
-    setup: function(){
+    this.setup = function(){
         var self = this;
 
-        self.canvas = $('#handlebar');
+        self.canvas = $(self.canvasId);
 
-        self.camera = new THREE.PerspectiveCamera( 25, 1, 1, 1000 );
+        self.camera = new THREE.PerspectiveCamera( self.cameraFOV, 1, 1, 1000 );
 
         self.controls = new THREE.OrbitControls( self.camera, self.canvas[0] );
         self.controls.target.z = 0;
         self.controls.noZoom = true;
         self.controls.noPan = true;
-        self.controls.rotateSpeed = 1.75;
+        self.controls.rotateSpeed = self.rotationSpeed;
+        self.controls.target.y = self.cameraHeight;
+        self.camera.position.y = self.cameraHeight;
 
-        self.camera.position.z = 75;
+        self.camera.position.z = self.cameraDistance;
 
         self.scene = new THREE.Scene();
 
@@ -103,43 +126,38 @@ var HandlebarModel = {
         GenericSportBike.showSampleSectionHeaderInstructions();
 
         $(window).resize(function(){
-            self.onWindowResize();
+            self.camera.updateProjectionMatrix();
+            self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
         });
 
         self.canvas.bind( 'mousedown', function(){
             self.autoRotate = false;
-            self.toggleWireframe();
         });
         self.canvas.bind( 'mouseleave', function(){
             self.autoRotate = true;
         });
-    },
+    };
 
-    animate: function() {
+    this.animate = function() {
         var self = this;
         requestAnimationFrame( this.animate.bind(this) );
 
         if( self.autoRotate ) {
             var dtime = Date.now() - self.startTime;
-            self.dae.rotation.y += 0.00075;
+            self.dae.rotation.y += self.autoRotationSpeed;
         }
 
         self.renderer.render( self.scene, self.camera );
-    },
+    };
 
-    onWindowResize: function() {
+    this.init = function(){
         var self = this;
-        this.camera.updateProjectionMatrix();
-        self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
-    },
-
-    init: function(){
-        if( $('#handlebar').length && $('#handlebar').is(':visible') ) {
-            var self = this;
+        console.log( self );
+        if( $(self.canvasId).length && $(self.canvasId).is(':visible') ) {
             var loader = new THREE.ColladaLoader();
             loader.options.convertUpAxis = true;
             loader.options.subdivideFaces = false;
-            loader.load( './models/handlebar_section.dae', function colladaReady( collada ) {
+            loader.load( self.filename, function colladaReady( collada ) {
 
                 self.dae = collada.scene;
 
@@ -149,214 +167,6 @@ var HandlebarModel = {
                 self.setup();
                 self.animate();
 
-            });
-
-            self.startTime = Date.now();
-        }
-    }
-};
-
-var NoseModel = {
-    camera: {},
-    scene: {},
-    renderer: {},
-    geometry: {},
-    mesh: {},
-    mouse: {},
-    initialRotation: 3.5,
-    autoRotate: true,
-
-    toggleWireframe: function(){
-        var processed = Array();
-        for (var k in this.dae.children[0].children ) {
-            var object = this.dae.children[0].children[k];
-            if( processed.indexOf( object.material.id ) == -1 ){
-                object.material.wireframe = !object.material.wireframe;
-                processed.push( object.material.id );
-            }
-        };
-    },
-
-    setup: function(){
-        var self = this;
-
-        self.canvas = $('#nose');
-
-        self.camera = new THREE.PerspectiveCamera( 25, 1, 1, 1000 );
-
-        self.controls = new THREE.OrbitControls( self.camera, self.canvas[0] );
-        self.controls.target.z = 0;
-        self.controls.noZoom = true;
-        self.controls.noPan = true;
-        self.controls.rotateSpeed = 1.75;
-
-        self.camera.position.z = 180;
-
-        self.scene = new THREE.Scene();
-
-        // Add the COLLADA
-        self.scene.add( self.dae );
-        self.dae.rotation.y = self.initialRotation;
-        
-        self.renderer = new THREE.WebGLRenderer({ antialias: true });
-        self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
-
-        self.canvas[0].appendChild( self.renderer.domElement );
-        self.canvas.find('img').remove();
-        GenericSportBike.showSampleSectionHeaderInstructions();
-
-        $(window).resize(function(){
-            self.onWindowResize();
-        });
-
-        self.canvas.bind( 'mousedown', function(){
-            self.autoRotate = false;
-            self.toggleWireframe();
-        });
-        self.canvas.bind( 'mouseleave', function(){
-            self.autoRotate = true;
-        });
-    },
-
-    animate: function() {
-        var self = this;
-        requestAnimationFrame( this.animate.bind(this) );
-
-        if( self.autoRotate ) {
-            var dtime = Date.now() - self.startTime;
-            self.dae.rotation.y += 0.001;
-        }
-
-        self.renderer.render( self.scene, self.camera );
-    },
-
-    onWindowResize: function() {
-        var self = this;
-        this.camera.updateProjectionMatrix();
-        self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
-    },
-
-    init: function(){
-        if( $('#nose').length && $('#nose').is(':visible') ) {
-            var self = this;
-            var loader = new THREE.ColladaLoader();
-            loader.options.convertUpAxis = true;
-            loader.options.subdivideFaces = false;
-            loader.load( './models/nose_section.dae', function colladaReady( collada ) {
-
-                self.dae = collada.scene;
-
-                self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
-                self.dae.updateMatrix();
-                
-                self.setup();
-                self.animate();
-
-            });
-
-            self.startTime = Date.now();
-        }
-    }
-};
-
-
-var ChainAndSprocket = {
-    camera: {},
-    scene: {},
-    renderer: {},
-    geometry: {},
-    mesh: {},
-    initialRotation: 5.4,
-    autoRotate: true,
-
-    toggleWireframe: function(){
-        var processed = Array();
-        for (var k in this.dae.children[0].children ) {
-            var object = this.dae.children[0].children[k];
-            if( processed.indexOf( object.material.id ) == -1 ){
-                object.material.wireframe = !object.material.wireframe;
-                processed.push( object.material.id );
-            }
-        };
-    },
-
-    setup: function(){
-        var self = this;
-
-        self.canvas = $('#chain_sprocket');
-
-        self.camera = new THREE.PerspectiveCamera( 25, 1, 1, 1000 );
-
-        self.controls = new THREE.OrbitControls( self.camera, self.canvas[0] );
-        self.controls.target.z = 0;
-        self.controls.noZoom = true;
-        self.controls.noPan = true;
-        self.controls.rotateSpeed = 1.75;
-        self.controls.target.y = 4;
-        self.camera.position.y = 4;
-
-        self.camera.position.z = 25;
-
-        self.scene = new THREE.Scene();
-
-        // Add the COLLADA
-        self.scene.add( self.dae );
-        self.dae.rotation.y = self.initialRotation;
-
-        self.renderer = new THREE.WebGLRenderer({ antialias: true });
-        self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
-
-        self.canvas[0].appendChild( self.renderer.domElement );
-        self.canvas.find('img').remove();
-        GenericSportBike.showSampleSectionHeaderInstructions();
-
-        $(window).resize(function(){
-            self.onWindowResize();
-        });
-
-        self.canvas.bind( 'mousedown', function(){
-            self.autoRotate = false;
-            self.toggleWireframe();
-        });
-        self.canvas.bind( 'mouseleave', function(){
-            self.autoRotate = true;
-        });
-    },
-
-    animate: function() {
-        var self = this;
-
-        // note: three.js includes requestAnimationFrame shim
-        requestAnimationFrame( this.animate.bind(this) );
-
-        if( self.autoRotate ) {
-            var dtime = Date.now() - self.startTime;
-            self.dae.rotation.y += 0.0005;
-        }
-
-        self.renderer.render( self.scene, self.camera );
-    },
-
-    onWindowResize: function() {
-        var self = this;
-        this.camera.updateProjectionMatrix();
-        self.renderer.setSize( self.canvas.width(), parseInt(self.canvas.css('padding-top')) );
-    },
-
-    init: function(){
-        if( $('#chain_sprocket').length && $('#chain_sprocket').is(':visible') ) {
-            var self = this;
-            var loader = new THREE.ColladaLoader();
-            loader.options.convertUpAxis = true;
-            loader.load( './models/chain_sprocket_section.dae', function colladaReady( collada ) {
-
-                self.dae = collada.scene;
-
-                self.dae.scale.x = self.dae.scale.y = self.dae.scale.z = 1;
-                self.dae.updateMatrix();
-                
-                self.setup();
-                self.animate();
             });
 
             self.startTime = Date.now();
