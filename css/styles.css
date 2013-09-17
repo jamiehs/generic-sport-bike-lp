@@ -241,30 +241,3 @@ body.webgl .starts-hidden {
     top: 0;
     left: 0;
     z-index: 5; }
-
-.model-sample-wrapper .toggle-wireframe {
-  display: block;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  text-indent: -200%;
-  overflow: hidden;
-  position: absolute;
-  z-index: 10;
-  top: 4px;
-  left: 4px;
-  width: 35px;
-  height: 35px;
-  background-image: url("../img/wireframe-globe.8bit.png");
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  -webkit-transition: all 310ms linear;
-  -moz-transition: all 310ms linear;
-  -ms-transition: all 310ms linear;
-  -o-transition: all 310ms linear;
-  transition: all 310ms linear; }
-.model-sample-wrapper.model-loaded .toggle-wireframe {
-  opacity: 0.25;
-  visibility: visible; }
-.model-sample-wrapper.model-loaded:hover .toggle-wireframe {
-  opacity: 1.0; }

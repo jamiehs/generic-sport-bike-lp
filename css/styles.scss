@@ -352,34 +352,3 @@ body.webgl .starts-hidden {
     z-index: 5;
   }
 }
-.model-sample-wrapper {
-  .toggle-wireframe {
-    display: block;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    text-indent: -200%;
-    overflow: hidden;
-    position: absolute;
-    z-index: 10;
-    top: 4px;
-    left: 4px;
-    width: 35px;
-    height: 35px;
-    background: {
-      image: url('../img/wireframe-globe.8bit.png');
-      repeat: no-repeat;
-      position: 0 0;
-    }
-    @include transition( all, $model-section-transition-speed, linear );
-  }
-  &.model-loaded {
-    .toggle-wireframe {
-      opacity: 0.25;
-      visibility: visible;
-    }
-    &:hover .toggle-wireframe {
-      opacity: 1.0;
-    }  
-  }
-}
