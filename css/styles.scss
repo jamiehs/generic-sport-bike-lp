@@ -236,6 +236,8 @@ body.webgl .starts-hidden {
 // Samples Section
 ////////////////////////////////////////////////
 #sample-section {
+  padding-top: 4em;
+
   h2 {
     padding-left: 0.5em;
     font-size: 2.5em;
@@ -246,7 +248,7 @@ body.webgl .starts-hidden {
     }
   }
   .model-sample-wrapper {
-    padding: 20px;
+    padding: 0.5em;
     img {
       max-width: 100%;
     }
@@ -329,8 +331,14 @@ body.webgl .starts-hidden {
   text-align: center;
   color: $medium_white_text;
 }
+
+
+////////////////////////////////////////////////
+// Model Samples
+////////////////////////////////////////////////
 .model {
   position: relative;
+  cursor: url('../img/openhand.cur'), default;
   width: 100%;
   height: 0;
   padding-top: 100%;
@@ -338,6 +346,9 @@ body.webgl .starts-hidden {
 
   &:hover {
     @include box-shadow( 0, 0, 8px, 3px, rgba(134, 160, 255, 0.30) );
+  }
+  &:active {
+    cursor: url('../img/closedhand.cur'), default;
   }
   img {
     position: absolute;
@@ -350,5 +361,11 @@ body.webgl .starts-hidden {
     top: 0;
     left: 0;
     z-index: 5;
+  }
+  .controls {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
   }
 }

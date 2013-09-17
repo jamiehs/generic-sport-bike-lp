@@ -25,10 +25,18 @@ var GenericSportBike = {
         $('#sample-section').find('h2:first em').show();
     },
 
-    bindSampleSectionToggleWireframe: function(){
-        $('#sample-section').find('.toggle-wireframe').click(function(event){
+    bindSampleSectionToggles: function(){
+        $('#sample-section .controls a').click(function(event){
             event.preventDefault();
-            $(this).parents('.model').data('model').toggleWireframe();
+            var clickedLink = $(this);
+            switch(clickedLink.attr('class')) {
+                case 'toggle-wireframe':
+                    $(this).parents('.model').data('model').toggleWireframe();
+                break;
+                case 'toggle-zoom':
+                    $(this).parents('.model').data('model').toggleZoom();
+                break;
+            }
         });
     },
 
@@ -51,18 +59,18 @@ var GenericSportBike = {
 
                 window.NoseModel = new LoadCollada('#nose', './models/nose_section.dae');
                 window.NoseModel.initialRotation = 3.5;
-                window.NoseModel.cameraDistance = 180;
-                window.NoseModel.autoRotationSpeed = 0.001;
+                window.NoseModel.cameraDistance = window.NoseModel.maxZoomDistance = 180;
+                window.NoseModel.minZoomDistance = 85;
                 window.NoseModel.init();
 
                 window.ChainModel = new LoadCollada('#chain_sprocket', './models/chain_sprocket_section.dae');
                 window.ChainModel.initialRotation = 5.4;
-                window.ChainModel.cameraDistance = 25;
+                window.ChainModel.cameraDistance = window.ChainModel.maxZoomDistance = 25;
+                window.ChainModel.minZoomDistance = 10;
                 window.ChainModel.cameraHeight = 4;
-                window.ChainModel.autoRotationSpeed =  0.00065;
                 window.ChainModel.init();
 
-                self.bindSampleSectionToggleWireframe();
+                self.bindSampleSectionToggles();
 
             });
             $('body').addClass('webgl');
@@ -87,12 +95,17 @@ function LoadCollada( canvasId, filename ) {
     this.canvasId = canvasId;
     this.initialRotation = 0;
     this.rotationSpeed = 1.2;
-    this.autoRotationSpeed = 0.00075;
+    this.autoRotationSpeed = 0.002;
     this.startRotation = 1.75;
     this.cameraDistance = 75;
     this.cameraHeight = 0;
     this.cameraFOV = 25;
     this.autoRotate = true;
+    this.currentlyZoomed = false;
+    this.minZoomDistance = 20;
+    this.maxZoomDistance = 75;
+    this.zoomStepSpeed = 1.07; // Number greater than 1.0
+    this.currentDistance = this.cameraDistance;
 
     this.toggleWireframe = function(){
         var processed = Array();
@@ -104,6 +117,42 @@ function LoadCollada( canvasId, filename ) {
             }
         };
     };
+
+    this.toggleZoom = function(){
+        if( this.currentlyZoomed ) {
+            this.zoomOut();
+        } else {
+            this.zoomIn();
+        }
+    };
+
+    this.zoomIn = function(){
+        if( this.currentDistance > this.minZoomDistance ) {
+            requestAnimationFrame( this.zoomIn.bind(this) );
+            this.controls.dollyIn( this.zoomStepSpeed );
+            this.currentDistance = this.getCameraDistance();
+            this.controls.update();
+        } else {
+            this.currentlyZoomed = true;
+        }
+    }
+
+    this.zoomOut = function(){
+        if( this.currentDistance < this.maxZoomDistance ) {
+            requestAnimationFrame( this.zoomOut.bind(this) );
+            this.controls.dollyOut( this.zoomStepSpeed );
+            this.currentDistance = this.getCameraDistance();
+            this.controls.update();
+        } else {
+            this.currentlyZoomed = false;
+        }
+    }
+
+    this.getCameraDistance = function(){
+        var a = new THREE.Vector3( this.camera.position.x, this.camera.position.y, this.camera.position.z );
+        var b = new THREE.Vector3( this.controls.target.x, this.controls.target.y, this.controls.target.z );
+        return a.distanceTo(b);
+    }
 
     this.setup = function(){
         var self = this;
@@ -147,6 +196,8 @@ function LoadCollada( canvasId, filename ) {
         self.canvas.bind( 'mouseleave', function(){
             self.autoRotate = true;
         });
+
+        self.currentDistance = this.getCameraDistance();
 
         // Attach a reference to this object to a data property.
         $(self.canvasId).data('model', self);
