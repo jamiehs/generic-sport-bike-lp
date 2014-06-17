@@ -24,13 +24,31 @@ module.exports = function(grunt) {
           'js/scripts.js': ['js/coffee/scripts.coffee'] // compile and concat into single file
         }
       }
-    }
-    
+    },
+
+    uglify: {
+      dist: {
+        files: {
+          'js/all.min.js': [
+            'js/jquery-1.10.2.min.js',
+            'js/bootstrap.min.js',
+            'js/LAB.min.js',
+            'js/scripts.js'
+          ]
+        },
+        options: {
+          // JS source map: to enable, uncomment the lines below and update sourceMappingURL based on your install
+          sourceMap: true
+        }
+      }
+    },
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   
-  grunt.registerTask('default', ['watch']); // run the watch task by default
+  grunt.registerTask('default', ['coffee', 'uglify', 'watch']); // run the watch task by default
 };
