@@ -16,12 +16,33 @@ module.exports = function(grunt) {
         ],
         tasks: ['coffee']
       },
+      sass: {
+        files: [
+          'css/*.scss'
+        ],
+        tasks: ['sass']
+      },
     },
 
     coffee: {
       compile: {
         files: {
           'js/scripts.js': ['js/coffee/scripts.coffee'] // compile and concat into single file
+        }
+      }
+    },
+
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded',
+          compass: true,
+          // Source maps are available, but require Sass 3.3.0 to be installed
+          // https://github.com/gruntjs/grunt-contrib-sass#sourcemap
+          sourcemap: false
+        },
+        files: {
+          'css/styles.css': 'css/styles.scss'
         }
       }
     },
@@ -50,5 +71,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   
-  grunt.registerTask('default', ['coffee', 'uglify', 'watch']); // run the watch task by default
+  grunt.registerTask('default', ['sass', 'coffee', 'uglify', 'watch']); // run the watch task by default
 };
