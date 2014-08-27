@@ -108,6 +108,15 @@ body.webgl .starts-hidden {
 
 
 ////////////////////////////////////////////////
+// Title Section
+////////////////////////////////////////////////
+.container.header {
+  h2 {
+    margin-bottom: 2.5em;
+  }
+}
+
+////////////////////////////////////////////////
 // Header Section
 ////////////////////////////////////////////////
 #header-intro-wrapper {
@@ -264,6 +273,7 @@ body.webgl .starts-hidden {
   }
   #detail-images {
     text-align: center;
+    margin: 1em;
     margin-bottom: 3em;
     .row div {
       margin-bottom: 30px;
@@ -300,6 +310,7 @@ body.webgl .starts-hidden {
 // Extra Small (phones)
 @media (max-width: 768px) {
   #sample-section {
+    padding-top: 1em;
     #inset-copy {
       background: #000;
       padding: 2em;
